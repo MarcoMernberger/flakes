@@ -29,7 +29,7 @@
             url =
               "https://gdc.cancer.gov/files/public/file/gdc-client_v${version}_Ubuntu_x64.zip";
             sha256 =
-              "sha256:03f4ah49mlkvy6l3ywh1y1d3w19dpnifavl5slhq9wq0pdknwmh1";
+              "sha256:fimW3cnHWv7XnWfzcKqgYefkhYK66/TV36a5uq5K5wk=";
           };
           autoPatchelfIgnoreMissingDeps=true; # libidn.11 - but nixpkgs has .12
           nativeBuildInputs = with pkgs; [
@@ -39,7 +39,7 @@
           buildPhase = "";
           installPhase = ''
             mkdir $out/bin -p
-            cp bin/* $out/bin -r
+            cp * $out/bin -r
           '';
         });
     };
