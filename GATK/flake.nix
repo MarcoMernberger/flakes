@@ -29,7 +29,7 @@
             url =
               "https://github.com/broadinstitute/gatk/releases/download/${version}/gatk-${version}.zip";
             sha256 =
-              "sha256:1125cfc862301d437310506c8774d36c3a90d00d52c7b5d6b59dac7241203628";
+              "sha256:yG/3NgbrN+rKMvxLS8k3UD5wWOcQtyj9tGq47g7VVEI=";
           };
           autoPatchelfIgnoreMissingDeps=true; # libidn.11 - but nixpkgs has .12
           nativeBuildInputs = with pkgs; [

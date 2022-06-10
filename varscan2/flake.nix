@@ -25,17 +25,19 @@
         in pkgs.stdenv.mkDerivation rec {
           pname = "VarScan2";
           version = "2.4.4";
-          src = pkgs.fetchzip {
+          src = pkgs.fetchurl {
             url =
-              "https://github.com/dkoboldt/varscan/blob/master/VarScan.v${version}.jar";
+              "https://github.com/dkoboldt/varscan/raw/master/VarScan.v${version}.jar";
             sha256 =
-              "sha256:c8beac11a942b54777ff9ac40cb850c4418531d2a217b8ce9e7657f4f8e94417";
+              "sha256:fb23b72ab676fb5a89bd02091c2b6c9aff210b96bee04d9dee6aef4d8b72814d";
+            curlOpts = "-L -o VarScan.v${version}.jar";
           };
           autoPatchelfIgnoreMissingDeps=true; # libidn.11 - but nixpkgs has .12
           nativeBuildInputs = with pkgs; [
             autoPatchelfHook
             zlib
           ];
+          dontUnpack = true;
           buildPhase = "";
           installPhase = ''
             mkdir $out/bin -p
