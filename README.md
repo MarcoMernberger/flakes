@@ -11,6 +11,19 @@ Copy into anysnake2.toml:
 [flakes.gdc]
 	url = "github:MarcoMernberger/flakes?dir=gdc" 
 	rev = "31b36d177af7339099b0b9eb042e2adaa0934a5d" # from this repo
-	# follows = ["nixpkgs"] # don't follow, we need the right so.s to wrap the stuff
+	# follows = ["nixpkgs"] # do follow, so no infinite nixpkgs
 	packages = ["defaultPackage.x86_64-linux"]
+
+[flakes.GATK]
+	url = "github:MarcoMernberger/flakes?dir=GATK" 
+	rev = "31b36d177af7339099b0b9eb042e2adaa0934a5d" # from this repo
+	# follows = ["nixpkgs"] # do follow, so no infinite nixpkgs
+	packages = ["defaultPackage.x86_64-linux"]
+
+[flakes.varscan2]
+	url = "github:MarcoMernberger/flakes?dir=varscan2" 
+	rev = "31b36d177af7339099b0b9eb042e2adaa0934a5d" # from this repo
+	# follows = ["nixpkgs"] # do follow, so no infinite nixpkgs
+	packages = ["defaultPackage.x86_64-linux"]
+
 ```
