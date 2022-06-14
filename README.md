@@ -26,4 +26,10 @@ Copy into anysnake2.toml:
 	# follows = ["nixpkgs"] # do follow, so no infinite nixpkgs
 	packages = ["defaultPackage.x86_64-linux"]
 
+[flakes.vep]
+	url = "github:MarcoMernberger/flakes?dir=vep" 
+	rev = "5e156ae2fac3e02e2e3112126a112065512283fe" # from this repo
+	# follows = ["nixpkgs"]
+	packages = ["defaultPackage.x86_64-linux"]
+
 ```
