@@ -40,8 +40,8 @@
           dontUnpack = true;
           buildPhase = "";
           installPhase = ''
-            mkdir $out/bin -p
-            cp * $out/bin -r
+            mkdir $src/bin -p
+            cp * $src/bin -r
           '';
         });
     };
