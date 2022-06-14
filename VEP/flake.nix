@@ -37,6 +37,13 @@
             autoPatchelfHook
             zlib
           ];
+          buildPhase = ''
+          '';
+          installPhase = ''
+            cd ensembl-vep
+            perl INSTALL.pl
+          '';
+
         });
     };
 }
