@@ -25,22 +25,22 @@
         in pkgs.stdenv.mkDerivation rec {
           pname = "VEP";
           version = "4.2.6.1";
-          src = pkgs.fetchFromGitHub {
-            repo = "ensembl-vep";
-            owner = "";
-            rev = version;
-            sha256 =
-              "sha256:yG/3NgbrN+rKMvxLS8k3UD5wWOcQtyj9tGq47g7VVEI=";
+          src = pkgs.fetchgit {
+            url = "https://github.com/Ensembl/ensembl-vep.git";
+            sha256 = "sha256:lyRt3cqsHdCFBeAdj9wgXorxi/7h1jgVX1cDWyePoBk=";
           };
           autoPatchelfIgnoreMissingDeps=true; # libidn.11 - but nixpkgs has .12
           nativeBuildInputs = with pkgs; [
             autoPatchelfHook
             zlib
+            perl534Packages.DBI
+            perl534Packages.ArchiveZip 
           ];
           buildPhase = ''
           '';
           installPhase = ''
-            cd ensembl-vep
+            ls -al
+            pwd
             perl INSTALL.pl
           '';
 
