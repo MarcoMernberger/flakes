@@ -1,8 +1,8 @@
 {
-  description = "flake for Variant Effekt Predictor";
+  description = "flake for GSEA";
 
   # Nixpkgs / NixOS version to use.
-  inputs.nixpkgs.url = "nixpkgs/nixos-21.11";
+  inputs.nixpkgs.url = "nixpkgs/nixos-22.05";
   # this line assume that you also have nixpkgs as an input
   
   outputs = { self, nixpkgs }:
@@ -23,32 +23,25 @@
       defaultPackage = forAllSystems (system:
         let pkgs = nixpkgsFor.${system};
         in pkgs.stdenv.mkDerivation rec {
-          pname = "VEP";
-          version = "4.2.6.1";
-          src = pkgs.fetchgit {
-            url = "https://github.com/Ensembl/ensembl-vep.git";
-            sha256 = "sha256:lyRt3cqsHdCFBeAdj9wgXorxi/7h1jgVX1cDWyePoBk=";
+          pname = "GSEA";
+          version = "4.3.2";
+          major = "4.3";
+          src = pkgs.fetchzip {
+            url =
+              "http://www.gsea-msigdb.org/gsea/msigdb/download_file.jsp?filePath=/gsea/software/desktop/${major}/GSEA_Linux_${version}.zip";
+            sha256 =!
+              "sha256:yG/3NgbrN+rKMvxLS8k3UD5wWOcQtyj9tGq47g7VVEI=";
           };
           autoPatchelfIgnoreMissingDeps=true; # libidn.11 - but nixpkgs has .12
-          BuildInputs = with pkgs; [
-            which
-          ];
           nativeBuildInputs = with pkgs; [
             autoPatchelfHook
             zlib
-            perl
-            perl534Packages.DBI
-            perl534Packages.ArchiveZip 
-            perl534Packages.DBDmysql
           ];
-          buildPhase = ''
-          '';
+          buildPhase = "";
           installPhase = ''
-            ls -al
-            pwd
-            perl INSTALL.pl
+            mkdir $out/bin -p
+            cp * $out/bin -r
           '';
-
         });
     };
 }
