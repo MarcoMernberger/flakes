@@ -6,14 +6,9 @@
   # this line assume that you also have nixpkgs as an input
   
   outputs = { self, nixpkgs }:
-    let
+    let  # define local variables  -  the value of let expression is the value after the in below
 
-      # Generate a user-friendly version number.
-      #version = builtins.substring 0 8 self.lastModifiedDate;
-
-      supportedSystems = [
-        "x86_64-linux"
-      ]; # "x86_64-darwin" "aarch64-linux" "aarch64-darwin" ]; guess we could adjust the url...
+      supportedSystems = ["x86_64-linux"]; # supportedSystems is a local variable known "in" ... 
       forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
       nixpkgsFor = forAllSystems (system: import nixpkgs { inherit system; });
 
@@ -23,14 +18,14 @@
       defaultPackage = forAllSystems (system:
         let pkgs = nixpkgsFor.${system};
         in pkgs.stdenv.mkDerivation rec {
+          name = "GSEA_4.3.2";
           pname = "GSEA";
           version = "4.3.2";
           major = "4.3";
           src = pkgs.fetchzip {
             url =
-              "http://www.gsea-msigdb.org/gsea/msigdb/download_file.jsp?filePath=/gsea/software/desktop/${major}/GSEA_Linux_${version}.zip";
-            sha256 =!
-              "sha256:yG/3NgbrN+rKMvxLS8k3UD5wWOcQtyj9tGq47g7VVEI=";
+              "https://data.broadinstitute.org/gsea-msigdb/gsea/software/desktop/${major}/GSEA_Linux_${version}.zip";
+              sha256 = "T5b8pp91wf5TuRQXBy0QqdzYS9AJBxy4Q84RLUSlqGU=";
           };
           autoPatchelfIgnoreMissingDeps=true; # libidn.11 - but nixpkgs has .12
           nativeBuildInputs = with pkgs; [
