@@ -25,7 +25,7 @@
           src = pkgs.fetchzip {
             url =
               "https://data.broadinstitute.org/gsea-msigdb/gsea/software/desktop/${major}/GSEA_${version}.zip";
-              sha256 = "T5b8pp91wf5TuRQXBy0QqdzYS9AJBxy4Q84RLUSlqGU=";
+              sha256 = "Gx5lGSVBXavVM4mfhx65F7wH9u7pmh6WIdymanl+sWQ=";
           };
           autoPatchelfIgnoreMissingDeps=true; # libidn.11 - but nixpkgs has .12
           nativeBuildInputs = with pkgs; [
@@ -36,6 +36,7 @@
           installPhase = ''
             mkdir $out/bin -p
             cp * $out/bin -r
+            rm $out/bin/result/bin/jdk-11 -rf
           '';
         });
     };
