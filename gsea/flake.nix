@@ -18,10 +18,10 @@
       defaultPackage = forAllSystems (system:
         let pkgs = nixpkgsFor.${system};
         in pkgs.stdenv.mkDerivation rec {
-          name = "GSEA_4.0.3";
+          name = "GSEA_4.3.2";
           pname = "GSEA";
-          version = "4.0.3";
-          major = "4.0";
+          version = "4.3.2";
+          major = "4.3";
           src = pkgs.fetchzip {
             url =
               "https://data.broadinstitute.org/gsea-msigdb/gsea/software/desktop/${major}/GSEA_${version}.zip";
