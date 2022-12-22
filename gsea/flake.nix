@@ -24,7 +24,7 @@
           major = "4.0";
           src = pkgs.fetchzip {
             url =
-              "https://data.broadinstitute.org/gsea-msigdb/gsea/software/desktop/${major}/GSEA_Linux_${version}.zip";
+              "https://data.broadinstitute.org/gsea-msigdb/gsea/software/desktop/${major}/GSEA_${version}.zip";
               sha256 = "T5b8pp91wf5TuRQXBy0QqdzYS9AJBxy4Q84RLUSlqGU=";
           };
           autoPatchelfIgnoreMissingDeps=true; # libidn.11 - but nixpkgs has .12
