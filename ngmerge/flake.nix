@@ -1,5 +1,5 @@
 {
-  description = "flake for VarScan2";
+  description = "flake for ngmerge";
 
   # Nixpkgs / NixOS version to use.
   inputs.nixpkgs.url = "nixpkgs/nixos-21.11";
@@ -13,7 +13,10 @@
 
       supportedSystems = [
         "x86_64-linux"
-      ]; # "x86_64-darwin" "aarch64-linux" "aarch64-darwin" ]; guess we could adjust the url...
+        "x86_64-darwin"
+        "aarch64-linux"
+        "aarch64-darwin"
+      ];
       forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
       nixpkgsFor = forAllSystems (system: import nixpkgs { inherit system; });
 
@@ -23,27 +26,32 @@
       defaultPackage = forAllSystems (system:
         let pkgs = nixpkgsFor.${system};
         in pkgs.stdenv.mkDerivation rec {
-          pname = "VarScan2";
-          version = "2.4.4";
-          src = pkgs.fetchurl {
-            #url = "https://github.com/dkoboldt/varscan/releases/download/v${version}/VarScan.v${version}.jar";
-            url = "https://github.com/dkoboldt/varscan/raw/master/VarScan.v${version}.jar";
-            sha256 =
-              "sha256:fb23b72ab676fb5a89bd02091c2b6c9aff210b96bee04d9dee6aef4d8b72814d";
-            #curlOpts = "-L -o out/VarScan.v${version}.jar";
-
+          pname = "ngmerge";
+          version = "0.3";
+          src = pkgs.fetchFromGitHub {
+            owner = "jsh58";
+            repo = "NGmerge";
+            rev = "bf260e591114fb1045e80ec5fa2cc3e663b2e19c";
           };
           autoPatchelfIgnoreMissingDeps=true; # libidn.11 - but nixpkgs has .12
           nativeBuildInputs = with pkgs; [
             autoPatchelfHook
             zlib
           ];
-          dontUnpack = true;
-          buildPhase = "";
-          installPhase = ''
-            mkdir $out/bin -p
-            cp * $out/bin -r
+          configureFlags = [
+            "--enable-plugins"
+            "--enable-libcurl"
+            "--disable-lzma"
+          ];
+          buildPhase = ''
+            make
           '';
+          installPhase = ''
+          '';
+          buildInputs = [
+            ncurses
+            zlib
+          ];
         });
     };
 }
