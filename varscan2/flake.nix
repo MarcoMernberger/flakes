@@ -26,11 +26,12 @@
           pname = "VarScan2";
           version = "2.4.4";
           src = pkgs.fetchurl {
-            url =
-              "https://github.com/dkoboldt/varscan/raw/master/VarScan.v${version}.jar";
+            #url = "https://github.com/dkoboldt/varscan/releases/download/v${version}/VarScan.v${version}.jar";
+            url = "https://github.com/dkoboldt/varscan/raw/master/VarScan.v${version}.jar";
             sha256 =
               "sha256:fb23b72ab676fb5a89bd02091c2b6c9aff210b96bee04d9dee6aef4d8b72814d";
-            curlOpts = "-L -o VarScan.v${version}.jar";
+            #curlOpts = "-L -o out/VarScan.v${version}.jar";
+
           };
           autoPatchelfIgnoreMissingDeps=true; # libidn.11 - but nixpkgs has .12
           nativeBuildInputs = with pkgs; [
@@ -40,8 +41,8 @@
           dontUnpack = true;
           buildPhase = "";
           installPhase = ''
-            mkdir $src/bin -p
-            cp * $src/bin -r
+            mkdir $out/bin -p
+            cp * $out/bin -r
           '';
         });
     };
