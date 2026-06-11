@@ -118,7 +118,7 @@
               ++ pyprojectOverrides
             )
           );
-        python_package = pythonSet.mkVirtualEnv "anysnake2-venv" spec;
+        python_package = pythonSet.mkVirtualEnv "bioenv" spec;
         spec = {
           mypython = [];
         };
