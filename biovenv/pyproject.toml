@@ -1,0 +1,72 @@
+[project]
+name = "bioenv"
+version = "0.1.0"
+description = "My default bioinformatics environment"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "anndata",
+    "bio>=1.8.1",
+    "biopython",
+    "black",
+    "deprecated",
+    "gseapy",
+    "h5py",
+    "ipykernel",
+    "jupyter",
+    "kaleido",
+    "matplotlib",
+    "numpy",
+    "panel",
+    "param",
+    "oldest-supported-numpy>=2023.8.3",
+    "pandas<3",
+    "plotnine>=0.12.4",
+    "pysam>=0.23.3",
+    "plotly",
+    "pydantic-settings",
+    "python-dotenv",
+    "seaborn",
+    "scipy>=1.17.0",
+    "scikit-learn",
+    "setuptools>=80.10.1",
+    "tomli-w",
+    "requests",
+    "rich",
+    "ruff",
+    "virtualenv",
+    "bokeh",
+    # "ics-caldav-sync>=1.1",
+    # "numpy>=2.2.6",
+    # "pytest>=8.3.5",
+    # "pySerial",
+    # "pysam>=0.23.3",
+    # "htseq>=2.0.9",
+    # "migrate-to-uv>=0.7.3",
+    # "scanpy>=1.11.3",
+    # "lxml>=6.0.0",
+    # "argparse>=1.4.0",
+    # "scipy>=1.15.3",
+    # "scikit-learn>=1.7.0",
+    # "requests>=2.32.4",
+    # "solidpython_ff",
+    # "huggingface-hub>=0.34.4",
+    # "tcl>=0.2",
+    # "fetch-github-issues>=0.1.2",
+    # "setuptools>=77.0.3",
+    # "pillow>=11.3.0",
+    # "izdvd>=0.1.2",
+    # "muscad>=0.5.1",
+    # "google-calendar-to-sqlite>=0.1a0",
+    # "openunmix>=1.3.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.5",
+	"setuptools",
+	"pytest-cov",
+]
+
+[tool.uv.sources]
+pylingual = { git = "https://github.com/syssec-utd/pylingual" }
