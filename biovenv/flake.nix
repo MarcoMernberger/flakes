@@ -120,7 +120,7 @@
           );
         python_package = pythonSet.mkVirtualEnv "bioenv" spec;
         spec = {
-          mypython = [];
+          bioenv = [];
         };
         workspace = uv2nix.lib.workspace.loadWorkspace {
           workspaceRoot = ./.;
